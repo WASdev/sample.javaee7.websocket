@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"></meta>
+<title>WebSocket Samples - Simple PathParam Endpoint</title>
+<style>
+.frm1{padding: 15px;background-color: #9666af; margin-bottom: 10px;}
+.frm2{padding-left: 25px; font-family: Verdana; color: #440055;}
+.big{font-size: 26px; color: white;}
+button, select{padding: 5px; padding-left: 20px; padding-right: 20px; margin:10px; width: 270px}
+</style>
+</head>
+<body>
+<body>
+<div class="frm1">
+<div class="big"> WebSocket Samples - Simple PathParam Endpoint</div>
+</div>
+<div class="frm2">
+</div>
+</head>
+<body>
+  <div>
+    The text you type in will get sent as parameter in the WebSocket endpoint URL, WebSocket endpoint reads the parameter and use it for the response. 
+     <br />
+    Response message from WebSocket endpoint will contain input message from below text box and @PathParam parameter values. Please see WebSocket request
+    <br />URI in PathParamEndpoint.html and ServerEndpoint URI and @PathParams parameters declared on @OnMessage method in PathParamEndpoint java class
+    <br />
+    <br />Type 'stop' to tell the server application to close down the session.
+    <br />
+    <br />
+    Message : <input id="inputmessage" type="text" />
+    
+  </div>
+  <div>
+    <input type="submit" value="Send Message" onclick="send()" />
+  </div>
+  <div id="messages"></div>
+  <script language="javascript" type="text/javascript">
+    <!-- PathParamEndpoint(ServerEndpoint) uri is /SimplePathParam/rentals/{name}/{building}/{home-number}/{no-of-rooms}/{property-val}/{pets-allowed}/{maintenance-fee}-->
+    var contextRoot = window.document.location.host + window.location.pathname.substring(0,window.location.pathname.lastIndexOf('/'));
+    var webSocket = new WebSocket('ws://' + contextRoot + '/SimplePathParam/rentals/LakeViewProperties/C/111/2/299999.99/true/199.45');
+
+    webSocket.onerror = function(event) {
+      onError(event)
+    };
+
+    webSocket.onopen = function(event) {
+      onOpen(event)
+    };
+
+    webSocket.onmessage = function(event) {
+      onMessage(event)
+    };
+    
+
+    function onMessage(event) {
+      document.getElementById('messages').innerHTML 
+        += '<br />Received message: ' + event.data;
+    }
+
+    function onOpen(event) {
+      document.getElementById('messages').innerHTML 
+        = 'Connection established';
+    }
+
+    function onError(event) {
+      alert('An error occurred:' + event.data);
+    }
+
+    function send() {
+      var txt = document.getElementById('inputmessage').value;
+      webSocket.send(txt);
+      return false;
+    }
+
+    
+    
+  </script>
+</body>
+</html>

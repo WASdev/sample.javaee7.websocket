@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8"></meta>
+<title>WebSocket Samples - Ping Pong</title>
+<style>
+.frm1{padding: 15px;background-color: #9666af; margin-bottom: 10px;}
+.frm2{padding-left: 25px; font-family: Verdana; color: #440055;}
+.big{font-size: 26px; color: white;}
+button, select{padding: 5px; padding-left: 20px; padding-right: 20px; margin:10px; width: 270px}
+</style>
+</head>
+<body>
+<body>
+<div class="frm1">
+<div class="big"> WebSocket Samples - Ping Pong</div>
+</div>
+<div class="frm2">
+</div>
+</head>
+<body>
+  <p />
+  
+    WebSocket ping and pong messages can be used variety of purposes including heartbeats, keep alive,
+    or detecting network issues.   Web browsers do not provide application programming interfaces(API) to 
+    send or receive notification of WebSocket ping or pong events.  A Web browser will respond to a incoming 
+    ping request with an immediate pong response.
+    
+    <p> This example shows an example of a server sent ping request.  Entering data and clicking "Request ping" will
+    send a message to the server.  The server will use the sent data to ping the browser. 
+    The browser will automatically respond with a pong response with the same data.   
+    The server will then process the pong message and send a message back to the client to provide verification
+    the pong was received.
+     <br />
+    <br />Type 'stop' to tell the server application to close down the session.
+  <p />
+  <div>
+    <input id="inputmessage" type="text" />
+  </div>
+  <div>
+    <input type="submit" value="Request Ping" onclick="send()" />
+  </div>
+  <div id="messages"></div>
+  <script language="javascript" type="text/javascript">
+    var contextRoot = window.document.location.host + window.location.pathname.substring(0,window.location.pathname.lastIndexOf('/'));
+    var webSocket = new WebSocket('ws://' + contextRoot + '/listenerEndpoint');
+
+    webSocket.onerror = function(event) {
+      onError(event)
+    };
+
+    webSocket.onopen = function(event) {
+      onOpen(event)
+    };
+
+    webSocket.onmessage = function(event) {
+      onMessage(event)
+    };
+    
+
+    function onMessage(event) {
+      document.getElementById('messages').innerHTML 
+        += '<br />' + event.data;
+    }
+
+    function onOpen(event) {
+      document.getElementById('messages').innerHTML 
+        = 'Connection established';
+    }
+
+    function onError(event) {
+      alert('An error occurred:' + event.data);
+    }
+
+    function send() {
+      var txt = document.getElementById('inputmessage').value;
+      webSocket.send(txt);
+      return false;
+    }
+
+    
+    
+  </script>
+</body>
+</html>
