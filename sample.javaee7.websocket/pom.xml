@@ -9,7 +9,7 @@
     </parent>
 
     <groupId>net.wasdev.wlp.sample.javaee7</groupId>
-    <artifactId>websocket</artifactId>
+    <artifactId>sample.javaee7.websocket</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>Java EE 7 WebSocket Sample</name>
