@@ -1,6 +1,10 @@
 */target/**
-*/.settings/*
+**/.settings
 .metadata
 *~
 /target
 /build/
+**/.DS_Store
+.classpath
+.factorypath
+.project
