@@ -1,0 +1,15 @@
+<server>
+
+    <featureManager>
+        <feature>websocket-1.1</feature>
+    </featureManager>
+
+    <httpEndpoint id="defaultHttpEndpoint"
+                  host="*"
+                  httpPort="9080">
+        <tcpOptions soReuseAddr="true"/>
+    </httpEndpoint>
+
+    <application name="sample.javaee7.websocket" context-root="/sample.javaee7.websocket" location="${appLocation}" type="war"/>
+
+</server>
