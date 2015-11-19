@@ -52,6 +52,9 @@ Click the button below to deploy your own copy of this application to [Bluemix](
 
 [![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/WASdev/sample.javaee7.websocket)
 
+Once the application is deployed and running in bluemix, it will be available under 
+[http://MYAPPNAME.mybluemix.net/sample.javaee7.websocket/](http://MYAPPNAME.mybluemix.net/sample.javaee7.websocket/).
+
 # Notice
 
 © Copyright IBM Corporation 2015.
