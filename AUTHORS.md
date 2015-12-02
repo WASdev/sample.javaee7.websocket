@@ -1,3 +1,3 @@
-This sample was created by:
-Michael C Thompson (barecode)
-Bill Wigger
+##### This sample was created by:
+- Michael C Thompson (barecode)
+- Bill Wigger
