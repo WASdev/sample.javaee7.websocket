@@ -25,8 +25,9 @@ Browse the code to see what it does, or build and run it yourself!
 2. Create a new Liberty Profile Server.
 3. Clone this repository.
 4. Import the sample into Eclipse using *File -> Import -> Maven -> Existing Maven Projects* option.
-5. Deploy the sample into Liberty server. Right click on the project and select *Run As -> Run on Server* option. Find and select the Liberty profile server and press *Finish*.
-6. Go to: [http://localhost:9080/sample.javaee7.websocket/](http://localhost:9080/sample.javaee7.websocket/)
+5. Edit the server.xml file located in the Servers -> DefaultServer folder in EnterpriseExporer. Copy the server.xml features from this project, found under the `<featureManager>` in /src/main/wlp/server.xml
+6. Deploy the sample into Liberty server. Right click on the project and select *Run As -> Run on Server* option. Find and select the Liberty profile server and press *Finish*.
+7. Go to: [http://localhost:9080/sample.javaee7.websocket/](http://localhost:9080/sample.javaee7.websocket/)
 
 ## Running with Maven
 
