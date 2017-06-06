@@ -6,7 +6,6 @@
         <groupId>net.wasdev.maven.parent</groupId>
         <artifactId>java7-parent</artifactId>
         <version>1.4</version>
-        <relativePath></relativePath>
     </parent>
 
     <groupId>net.wasdev.wlp.sample.javaee7</groupId>
@@ -32,10 +31,10 @@
 
     <dependencies>
         <dependency>
-        	<groupId>javax.websocket</groupId>
-        	<artifactId>javax.websocket-api</artifactId>
-        	<scope>provided</scope>
-        	<version>1.0</version>
+            <groupId>javax.websocket</groupId>
+            <artifactId>javax.websocket-api</artifactId>
+            <scope>provided</scope>
+            <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.geronimo.specs</groupId>
@@ -47,29 +46,51 @@
 
     <build>
         <finalName>${project.artifactId}</finalName>
-
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>net.wasdev.wlp.maven.plugins</groupId>
-                    <artifactId>liberty-maven-plugin</artifactId>
-                    <version>1.1</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>net.wasdev.wlp.maven.plugins</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
+                <version>2.0</version>
                 <configuration>
                     <configFile>src/main/wlp/server.xml</configFile>
+                    <installAppPackages>project</installAppPackages>
+                    <looseApplication>true</looseApplication>
                     <bootstrapProperties>
-                        <appLocation>../../../../../${project.build.finalName}</appLocation>
+                        <appLocation>${project.build.finalName}.war</appLocation>
                     </bootstrapProperties>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>stop-server-before-clean</id>
+                        <phase>pre-clean</phase>
+                        <goals>
+                            <goal>stop-server</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>create-server</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>install-server</goal>
+                            <goal>create-server</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>install-apps</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>install-apps</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>package-server</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>package-server</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
-
     </build>
-
 </project>
