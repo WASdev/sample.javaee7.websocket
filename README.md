@@ -1,4 +1,4 @@
-Java EE 7 WebSocket Sample
+Java EE 7 WebSocket Sample [![Build Status](https://travis-ci.org/WASdev/sample.javaee7.websocket.svg?branch=master)](https://travis-ci.org/WASdev/sample.javaee7.websocket)
 ==============
 
 This project contains a simple WebSocket application which demonstrates the Java EE 7 technology.
