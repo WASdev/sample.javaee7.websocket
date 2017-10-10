@@ -9,3 +9,5 @@
 .factorypath
 .project
 /.apt_generated/
+build/
+.gradle/
