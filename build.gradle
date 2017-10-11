@@ -9,7 +9,7 @@ description = """Java EE 7 WebSocket Sample"""
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 tasks.withType(JavaCompile) {
-	options.encoding = 'UTF-8'
+    options.encoding = 'UTF-8'
 }
 
 buildscript {
@@ -32,14 +32,12 @@ repositories {
 
 ext {
     // Liberty server properties
-    wlpServerName = 'LibertyProjectServer'
-    serverDirectory = "${project.buildDir}/wlp/usr/servers/${wlpServerName}"
+    serverDirectory = "${project.buildDir}/wlp/usr/servers/defaultServer"
     testServerHttpPort = 9080
     testServerHttpsPort = 9443
 
     // This is set in the ibm-web-ext.xml file
     warContext = 'sample.javaee7.websocket'
-
 }
 
 war {
@@ -49,8 +47,7 @@ war {
 liberty {
     server{
         configFile = file("src/main/wlp/server.xml")
-        bootstrapProperties = ['appLocation': "${war.baseName}"]
-        name = 'LibertyProjectServer'
+        bootstrapProperties = ['appLocation': war.baseName]
         apps = [war]
      }
 }

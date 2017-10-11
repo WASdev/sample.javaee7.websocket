@@ -47,30 +47,30 @@ Once the server is running, the application will be available under [http://loca
 
 ## Running with Gradle
 
-This project can also be built and run with [Gradle]. The provided `build.gradle` file applies the [Liberty Gradle Plug-in] and is configured to automatically download and install the Liberty Java EE7 Web Profile runtime from Maven Central. The Liberty Gradle Plug-in has built-in tasks that can be used to create, configure, and run the application on the Liberty server.
+This project can also be built and run with [Gradle]. The provided `build.gradle` file applies the [Liberty Gradle Plug-in] and is configured to automatically download and install the Liberty Java EE7 Web Profile 7 runtime from Maven Central. The Liberty Gradle Plug-in has built-in tasks that can be used to create, configure, and run the application on the Liberty server.
 
 Use the following steps to run the application with Gradle:
 
 1. Execute the full Gradle build. The Liberty Gradle Plug-in will download and install the Liberty server.
     ```bash
-    $ gradle clean build
+    $ ./gradlew clean build
     ```
 
 2. To start the server with the Servlet sample execute:
     ```bash
-    $ gradle libertyStart
+    $ ./gradlew libertyStart
     ```
 
     Alternatively, execute the run command:
     ```bash
-    $ gradle libertyRun --no-daemon
+    $ ./gradlew libertyRun --no-daemon
     ```
 
 Once the server has started, the application will be available under [http://localhost:9080/sample.javaee7.jsonp](http://localhost:9080/sample.javaee7.jsonp).
 
 3. To stop the server, execute:
     ```bash
-    $ gradle libertyStop
+    $ ./gradlew libertyStop
     ```  
 
 Please refer to the [ci.gradle] repository for documentation about using the Liberty Gradle Plug-in.
