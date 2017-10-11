@@ -29,7 +29,7 @@ Browse the code to see what it does, or build and run it yourself!
 
 ## Running with Maven
 
-This project can be built with [Apache Maven](http://maven.apache.org/). The project uses [Liberty Maven Plug-in](https://github.com/WASdev/ci.maven) to automatically download and install Liberty profile runtime from the [Liberty repository](https://developer.ibm.com/wasdev/downloads/). Liberty Maven Plug-in is also used to create, configure, and run the application on the Liberty server.
+This project can be built with [Apache Maven](http://maven.apache.org/). The project uses [Liberty Maven Plug-in] to automatically download and install Liberty profile runtime from the [Liberty repository](https://developer.ibm.com/wasdev/downloads/). Liberty Maven Plug-in is also used to create, configure, and run the application on the Liberty server.
 
 Use the following steps to run the application with Maven:
 
@@ -47,7 +47,7 @@ Once the server is running, the application will be available under [http://loca
 
 ## Running with Gradle
 
-This project can also be built and run with Gradle. The provided `build.gradle` file applies the Liberty Gradle Plug-in and is configured to automatically download and install Liberty with Java EE Web Profile 7 runtime from Maven Central. The Liberty Gradle Plug-in has built-in tasks that can be used to create, configure, and run the application on the Liberty server.
+This project can also be built and run with [Gradle]. The provided `build.gradle` file applies the [Liberty Gradle Plug-in] and is configured to automatically download and install the Liberty Java EE7 Web Profile runtime from Maven Central. The Liberty Gradle Plug-in has built-in tasks that can be used to create, configure, and run the application on the Liberty server.
 
 Use the following steps to run the application with Gradle:
 
@@ -73,7 +73,7 @@ Once the server has started, the application will be available under [http://loc
     $ gradle libertyStop
     ```  
 
-Please refer to the [ci.gradle](http://github.com/WASDev/ci.gradle) repository for documentation about using the Liberty Gradle Plug-in.
+Please refer to the [ci.gradle] repository for documentation about using the Liberty Gradle Plug-in.
 
 
 ## Deploying to Bluemix
@@ -106,3 +106,5 @@ limitations under the License.
 ````
 
 [Liberty Maven Plug-in]: https://github.com/WASdev/ci.maven
+[Liberty Gradle Plug-in]: https://github.com/WASdev/ci.gradle
+[ci.gradle]: https://github.com/WASdev/ci.gradle

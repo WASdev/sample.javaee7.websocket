@@ -43,22 +43,22 @@ ext {
 }
 
 war {
-	archiveName = baseName + '.' + extension
+    archiveName = baseName + '.' + extension
 }
 
 liberty {
     server{
         configFile = file("src/main/wlp/server.xml")
-		bootstrapProperties = ['appLocation': "${war.baseName}"]
+        bootstrapProperties = ['appLocation': "${war.baseName}"]
         name = 'LibertyProjectServer'
         apps = [war]
      }
 }
 
 dependencies {
-	providedCompile group: 'javax.websocket', name: 'javax.websocket-api', version:'1.0'
-	providedCompile group: 'org.apache.geronimo.specs', name: 'geronimo-servlet_3.0_spec', version:'1.0'
-	libertyRuntime group: 'com.ibm.websphere.appserver.runtime', name: 'wlp-webProfile7', version: '17.0.0.2'
+    providedCompile group: 'javax.websocket', name: 'javax.websocket-api', version:'1.0'
+    providedCompile group: 'org.apache.geronimo.specs', name: 'geronimo-servlet_3.0_spec', version:'1.0'
+    libertyRuntime group: 'com.ibm.websphere.appserver.runtime', name: 'wlp-webProfile7', version: '17.0.0.2'
 }
 
 test {
