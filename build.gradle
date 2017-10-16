@@ -1,0 +1,85 @@
+apply plugin: 'war'
+apply plugin: 'liberty'
+
+group = 'net.wasdev.wlp.sample.javaee7'
+version = '1.0-SNAPSHOT'
+
+description = """Java EE 7 WebSocket Sample"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'net.wasdev.wlp.gradle.plugins:liberty-gradle-plugin:2.0'
+    }
+}
+
+repositories {
+     mavenCentral()
+}
+
+ext {
+    // Liberty server properties
+    serverDirectory = "${project.buildDir}/wlp/usr/servers/defaultServer"
+    testServerHttpPort = 9080
+    testServerHttpsPort = 9443
+
+    // This is set in the ibm-web-ext.xml file
+    warContext = 'sample.javaee7.websocket'
+}
+
+war {
+    archiveName = baseName + '.' + extension
+}
+
+liberty {
+    server{
+        configFile = file("src/main/wlp/server.xml")
+        bootstrapProperties = ['appLocation': war.baseName]
+        apps = [war]
+     }
+}
+
+dependencies {
+    providedCompile group: 'javax.websocket', name: 'javax.websocket-api', version:'1.0'
+    providedCompile group: 'org.apache.geronimo.specs', name: 'geronimo-servlet_3.0_spec', version:'1.0'
+    libertyRuntime group: 'com.ibm.websphere.appserver.runtime', name: 'wlp-webProfile7', version: '17.0.0.2'
+}
+
+test {
+    println 'inside the test block'
+    reports.html.destination = file("$buildDir/reports/unit")
+    reports.junitXml.destination = file("$buildDir/test-results/unit")
+    exclude '**/it/**'
+}
+
+task integrationTest(type: Test) {
+    group 'Verification'
+    description 'Runs the integration tests.'
+    reports.html.destination = file("$buildDir/reports/it")
+    reports.junitXml.destination = file("$buildDir/test-results/it")
+    include '**/it/**'
+    exclude '**/unit/**'
+
+    systemProperties = ['liberty.test.port': testServerHttpPort, 'war.context': warContext]
+}
+
+task printMessageAboutRunningServer {
+    doLast {
+        println "The server is now running at http://localhost:${testServerHttpPort}/${warContext}"
+        println "To stop the server run 'gradle libertyStop'"
+    }
+}
+
+check.dependsOn 'integrationTest'
+integrationTest.dependsOn 'libertyStart', 'testClasses'
+integrationTest.finalizedBy 'libertyStop'
+libertyStart.finalizedBy 'printMessageAboutRunningServer'
