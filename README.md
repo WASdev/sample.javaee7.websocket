@@ -21,14 +21,24 @@ Browse the code to see what it does, or build and run it yourself!
 
 ## Running in Eclipse
 
+### Maven
 1. Download and install [Eclipse with the WebSphere Developer Tools](https://developer.ibm.com/wasdev/downloads/liberty-profile-using-eclipse/).
 2. Clone this repository.
 3. Import the sample into Eclipse using *File -> Import -> Maven -> Existing Maven Projects* option.
 4. Right click on the project and select *Run As -> Run on Server* option. Find and select the Liberty profile server and press *Finish*.
 5. Go to: [http://localhost:9080/sample.javaee7.websocket/](http://localhost:9080/sample.javaee7.websocket/)
 
-## Running with Maven
+### Gradle
+1. Go to *Help > Eclipse Marketplace > Install Buildship Gradle Integration 2.0*
+2. Clone this project and import into Eclipse as an 'Existing Gradle Project'.
+3. Go to *Window > Show View > Other > Gradle Executions & Gradle Tasks*
+4. Go to Gradle Tasks view and run `clean` in build folder, then `build` in build folder, then `libertyStart` in liberty folder.
+5. You should see the following in the console: `Application sample.javaee7.websocket started in XX.XX seconds.`
+6. Go to: [http://localhost:9080/sample.javaee7.websocket/](http://localhost:9080/sample.javaee7.websocket/)
 
+## Running with the Command Line
+
+### Maven
 This project can be built with [Apache Maven](http://maven.apache.org/). The project uses [Liberty Maven Plug-in] to automatically download and install Liberty profile runtime from the [Liberty repository](https://developer.ibm.com/wasdev/downloads/). Liberty Maven Plug-in is also used to create, configure, and run the application on the Liberty server.
 
 Use the following steps to run the application with Maven:
@@ -45,8 +55,7 @@ Use the following steps to run the application with Maven:
 
 Once the server is running, the application will be available under [http://localhost:9080/sample.javaee7.websocket/](http://localhost:9080/sample.javaee7.websocket/).
 
-## Running with Gradle
-
+### Gradle
 This project can also be built and run with [Gradle]. The provided `build.gradle` file applies the [Liberty Gradle Plug-in] and is configured to automatically download and install the Liberty Java EE7 Web Profile 7 runtime from Maven Central. The Liberty Gradle Plug-in has built-in tasks that can be used to create, configure, and run the application on the Liberty server.
 
 Use the following steps to run the application with Gradle:
